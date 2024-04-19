@@ -5,6 +5,7 @@ import Eras from './Pages/Eras';
 import Makers from './Pages/Makers';
 import Materials from './Pages/Materials';
 import Types from './Pages/Types';
+import Swords from './Pages/Swords';
 import NotFound from './Pages/NotFound';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/makers" element={<Makers />} />
         <Route path="/materials" element={<Materials />} />
         <Route path="/types" element={<Types />} />
+        <Route path="/swords" element={<Swords />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>

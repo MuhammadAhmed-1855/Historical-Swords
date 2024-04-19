@@ -26,6 +26,30 @@ const swordSchema = new mongoose.Schema({
         trim: true,
         minlength: 4
     },
+    eraName: [{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 3
+    }],
+    typeName: [{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 3
+    }],
+    materialName: [{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 3
+    }],
+    makerName: [{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 3
+    }],
     eraIDs: [{ 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Era'
