@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 
 const makerController = require('../controllers/makerController');
 const authAdmin = require('../middleware/authAdmin');

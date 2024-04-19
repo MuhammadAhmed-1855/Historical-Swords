@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 
 const userRouter = require('./routes/userRouter');
 const eraRouter = require('./routes/eraRouter');
+const makerRouter = require('./routes/makerRouter');
+const typeRouter = require('./routes/typeRouter');
+const materialRouter = require('./routes/materialRouter');
+const swordRouter = require('./routes/swordRouter');
 
 
 require('dotenv').config()
@@ -23,6 +27,10 @@ mongoose.connect(URI)
 
 app.use('/users', userRouter);
 app.use('/eras', eraRouter);
+app.use('/makers', makerRouter);
+app.use('/types', typeRouter);
+app.use('/materials', materialRouter);
+app.use('/swords', swordRouter);
 
 app.listen(port, () => {
   console.log(`:istening on port ${port}`)

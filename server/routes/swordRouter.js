@@ -1,4 +1,5 @@
-const router = require('express').router;
+const express = require('express');
+const router = express.Router();
 
 const swordController = require('../controllers/swordController');
 const authAdmin = require('../middleware/authAdmin');
