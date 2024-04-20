@@ -12,7 +12,6 @@ import ViewAllMaterials from '../API/Material/ViewAll';
 import ViewAllTypes from '../API/Type/ViewAll';
 import Pagination from '@mui/material/Pagination';
 import NavBar from '../Components/NavBar';
-import CustomizedTable from '../Components/CustomizedTable';
 import SwordCard from '../Components/SwordCard';
 
 const Swords = () => {
@@ -127,149 +126,171 @@ const Swords = () => {
         }));
     };
     
-
-    const columns = ['name', 'description', 'manufacturedYear', 'image', 'eraNames', 'makerNames', 'materialNames', 'typeNames'];
-
     return (
         <div>
-            <NavBar />
-            
-            {/* <CustomizedTable rows={swords.slice((page - 1) * perPage, page * perPage)} columns={columns} /> */}
-            <div>
-                <Typography variant="h4" style={{ marginBottom: '1rem' }}>Swords</Typography>
-                <div className="swords-container">
-                    {paginatedSwords.map((sword) => (
-                        <SwordCard key={sword._id} sword={sword} />
-                    ))}
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', backgroundColor: 'red', width: '50vw', marginLeft: '25vw' }}>
-                    <Pagination count={Math.ceil(swords.length / perPage)} page={page} onChange={handleChangePage} />
-                </div>
-            </div>
+            {userEmail === "" && userToken === "" ? (
+                <>
+                    <iframe
+                        src="https://lottie.host/embed/1735cc84-8331-411b-9839-ec699469defc/EYzL2DAfWT.json"
+                        height='500vh'
+                        width='100%'
+                        frameBorder='none'
+                        title='Login First'
+                    ></iframe>
 
-            {userEmail === adminEmail && (
-                <div style={{ backgroundColor: "#ffffff", width: '70%', marginLeft: '14%', marginBottom: '2rem', marginTop: '2rem', padding: '1rem', borderRadius: '8px' }}>
-                    <Typography variant="h4" style={{ color: 'red', fontWeight: '900', marginBottom: '1rem', paddingLeft: '42%' }}>Add Sword</Typography>
+                    <Button
+                        href='/'
+                        variant='contained'
+                        color='primary'
+                        sx={{ width: '20vw', marginLeft: '40vw' }}
+                    >
+                        Login To View
+                    </Button>
+                </>
                 
-                    <form onSubmit={handleAddSword}>
-                        <TextField 
-                            label="Name" 
-                            variant="outlined" 
-                            fullWidth 
-                            name="name" 
-                            value={newSword.name} 
-                            onChange={handleInputChange}
-                            style={{ marginBottom: '1rem' }}
-                        />
-                        <TextField 
-                            label="Description" 
-                            variant="outlined" 
-                            fullWidth 
-                            name="description" 
-                            value={newSword.description} 
-                            onChange={handleInputChange}
-                            style={{ marginBottom: '1rem' }}
-                        />
-                        <TextField 
-                            label="Manufactured Year" 
-                            variant="outlined" 
-                            fullWidth 
-                            name="manufacturedYear" 
-                            value={newSword.manufacturedYear} 
-                            onChange={handleInputChange}
-                            style={{ marginBottom: '1rem' }}
-                        />
-                        <TextField 
-                            label="Image URL" 
-                            variant="outlined" 
-                            fullWidth 
-                            name="image" 
-                            value={newSword.image} 
-                            onChange={handleInputChange}
-                            style={{ marginBottom: '1rem' }}
-                        />
-                        <TextField 
-                            select
-                            label="Era Name" 
-                            variant="outlined" 
-                            fullWidth 
-                            name="eraIDs" 
-                            value={newSword.eraIDs} 
-                            onChange={handleInputChange}
-                            SelectProps={{ multiple: true }}
-                            style={{ marginBottom: '1rem' }}
-                        >
-                            {eras.map((era) => (
-                                <MenuItem key={era.id} value={era._id}>
-                                    {era.name}
-                                </MenuItem>
+            ) : (
+                <>
+                    <NavBar />
+                
+                    <div>
+                        <Typography variant="h4" style={{ marginBottom: '1rem' }}>Swords</Typography>
+                        <div className="swords-container">
+                            {paginatedSwords.map((sword) => (
+                                <SwordCard key={sword._id} sword={sword} />
                             ))}
-                        </TextField>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', backgroundColor: 'red', width: '50vw', marginLeft: '25vw' }}>
+                            <Pagination count={Math.ceil(swords.length / perPage)} page={page} onChange={handleChangePage} />
+                        </div>
+                    </div>
 
-                        <TextField 
-                            select
-                            label="Type Name" 
-                            variant="outlined" 
-                            fullWidth 
-                            name="typeIDs" 
-                            value={newSword.typeIDs} 
-                            onChange={handleInputChange}
-                            SelectProps={{ multiple: true }}
-                            style={{ marginBottom: '1rem' }}
-                        >
-                            {types.map((type) => (
-                                <MenuItem key={type.id} value={type._id}>
-                                    {type.name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                    {userEmail === adminEmail && (
+                        <div style={{ backgroundColor: "#ffffff", width: '70%', marginLeft: '14%', marginBottom: '2rem', marginTop: '2rem', padding: '1rem', borderRadius: '8px' }}>
+                            <Typography variant="h4" style={{ color: 'red', fontWeight: '900', marginBottom: '1rem', paddingLeft: '42%' }}>Add Sword</Typography>
+                        
+                            <form onSubmit={handleAddSword}>
+                                <TextField 
+                                    label="Name" 
+                                    variant="outlined" 
+                                    fullWidth 
+                                    name="name" 
+                                    value={newSword.name} 
+                                    onChange={handleInputChange}
+                                    style={{ marginBottom: '1rem' }}
+                                />
+                                <TextField 
+                                    label="Description" 
+                                    variant="outlined" 
+                                    fullWidth 
+                                    name="description" 
+                                    value={newSword.description} 
+                                    onChange={handleInputChange}
+                                    style={{ marginBottom: '1rem' }}
+                                />
+                                <TextField 
+                                    label="Manufactured Year" 
+                                    variant="outlined" 
+                                    fullWidth 
+                                    name="manufacturedYear" 
+                                    value={newSword.manufacturedYear} 
+                                    onChange={handleInputChange}
+                                    style={{ marginBottom: '1rem' }}
+                                />
+                                <TextField 
+                                    label="Image URL" 
+                                    variant="outlined" 
+                                    fullWidth 
+                                    name="image" 
+                                    value={newSword.image} 
+                                    onChange={handleInputChange}
+                                    style={{ marginBottom: '1rem' }}
+                                />
+                                <TextField 
+                                    select
+                                    label="Era Name" 
+                                    variant="outlined" 
+                                    fullWidth 
+                                    name="eraIDs" 
+                                    value={newSword.eraIDs} 
+                                    onChange={handleInputChange}
+                                    SelectProps={{ multiple: true }}
+                                    style={{ marginBottom: '1rem' }}
+                                >
+                                    {eras.map((era) => (
+                                        <MenuItem key={era.id} value={era._id}>
+                                            {era.name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
 
-                        <TextField
-                            select
-                            label="Material Name"
-                            variant="outlined"
-                            fullWidth
-                            name="materialIDs"
-                            value={newSword.materialIDs}
-                            onChange={handleInputChange}
-                            SelectProps={{ multiple: true }}
-                            style={{ marginBottom: '1rem' }}
-                        >
-                            {materials.map((material) => (
-                                <MenuItem key={material.id} value={material._id}>
-                                    {material.name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                                <TextField 
+                                    select
+                                    label="Type Name" 
+                                    variant="outlined" 
+                                    fullWidth 
+                                    name="typeIDs" 
+                                    value={newSword.typeIDs} 
+                                    onChange={handleInputChange}
+                                    SelectProps={{ multiple: true }}
+                                    style={{ marginBottom: '1rem' }}
+                                >
+                                    {types.map((type) => (
+                                        <MenuItem key={type.id} value={type._id}>
+                                            {type.name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
 
-                        <TextField
-                            select
-                            label="Maker Name"
-                            variant="outlined"
-                            fullWidth
-                            name="makerIDs"
-                            value={newSword.makerIDs}
-                            onChange={handleInputChange}
-                            SelectProps={{ multiple: true }}
-                            style={{ marginBottom: '1rem' }}
-                        >
-                            {makers.map((maker) => (
-                                <MenuItem key={maker.id} value={maker._id}>
-                                    {maker.name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                                <TextField
+                                    select
+                                    label="Material Name"
+                                    variant="outlined"
+                                    fullWidth
+                                    name="materialIDs"
+                                    value={newSword.materialIDs}
+                                    onChange={handleInputChange}
+                                    SelectProps={{ multiple: true }}
+                                    style={{ marginBottom: '1rem' }}
+                                >
+                                    {materials.map((material) => (
+                                        <MenuItem key={material.id} value={material._id}>
+                                            {material.name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
 
-                        <Button type="submit" variant="contained" color="primary" style={{ display: 'block', margin: '0 auto' }}>
-                            Add Sword
-                        </Button>
-                    </form>
-                </div>
+                                <TextField
+                                    select
+                                    label="Maker Name"
+                                    variant="outlined"
+                                    fullWidth
+                                    name="makerIDs"
+                                    value={newSword.makerIDs}
+                                    onChange={handleInputChange}
+                                    SelectProps={{ multiple: true }}
+                                    style={{ marginBottom: '1rem' }}
+                                >
+                                    {makers.map((maker) => (
+                                        <MenuItem key={maker.id} value={maker._id}>
+                                            {maker.name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+
+                                <Button type="submit" variant="contained" color="primary" style={{ display: 'block', margin: '0 auto' }}>
+                                    Add Sword
+                                </Button>
+                            </form>
+                        </div>
+                    )}
+
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                        <Pagination count={Math.ceil(swords.length / perPage)} page={page} onChange={handleChangePage} />
+                    </div>
+                </>
             )}
-
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                <Pagination count={Math.ceil(swords.length / perPage)} page={page} onChange={handleChangePage} />
-            </div>
+            
+            
         </div>
     );
 };

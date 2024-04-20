@@ -64,38 +64,62 @@ const Makers = () => {
 
     return (
         <div>
-            <NavBar />
-            {/* Pass rows and columns to CustomizedTable component */}
-            <CustomizedTable rows={makers} columns={columns} />
-            {userEmail === adminEmail && (
-                <div style={{ backgroundColor: "#ffffff", width: '70%', marginLeft: '14%', marginBottom: '2rem', padding: '1rem', borderRadius: '8px' }}>
-                    <Typography variant="h4" style={{ color: 'red', fontWeight: '900', marginBottom: '1rem', paddingLeft: '42%' }}>Add Maker</Typography>
-                    
-                    <form onSubmit={handleAddMaker}>
-                        {/* Add form fields for adding maker */}
-                        <TextField
-                            label="Name"
-                            variant="outlined"
-                            fullWidth
-                            name="name"
-                            value={newMaker.name}
-                            onChange={handleInputChange}
-                            style={{ marginBottom: '1rem' }}
-                        />
-                        <TextField
-                            label="Description"
-                            variant="outlined"
-                            fullWidth
-                            name="description"
-                            value={newMaker.description}
-                            onChange={handleInputChange}
-                            style={{ marginBottom: '1rem' }}
-                        />
-                        <Button type="submit" variant="contained" color="primary" style={{ display: 'block', margin: '0 auto' }}>
-                            Add Maker
-                        </Button>
-                    </form>
-                </div>
+            {userEmail === "" && userToken === "" ? (
+                <>
+                    <iframe
+                        src="https://lottie.host/embed/1735cc84-8331-411b-9839-ec699469defc/EYzL2DAfWT.json"
+                        height='500vh'
+                        width='100%'
+                        frameBorder='none'
+                        title='Login First'
+                    ></iframe>
+
+                    <Button
+                        href='/'
+                        variant='contained'
+                        color='primary'
+                        sx={{ width: '20vw', marginLeft: '40vw' }}
+                    >
+                        Login To View
+                    </Button>
+                </>
+                
+            ) : (
+                <>
+                    <NavBar />
+                    {/* Pass rows and columns to CustomizedTable component */}
+                    <CustomizedTable rows={makers} columns={columns} />
+                    {userEmail === adminEmail && (
+                        <div style={{ backgroundColor: "#ffffff", width: '70%', marginLeft: '14%', marginBottom: '2rem', padding: '1rem', borderRadius: '8px' }}>
+                            <Typography variant="h4" style={{ color: 'red', fontWeight: '900', marginBottom: '1rem', paddingLeft: '42%' }}>Add Maker</Typography>
+                            
+                            <form onSubmit={handleAddMaker}>
+                                {/* Add form fields for adding maker */}
+                                <TextField
+                                    label="Name"
+                                    variant="outlined"
+                                    fullWidth
+                                    name="name"
+                                    value={newMaker.name}
+                                    onChange={handleInputChange}
+                                    style={{ marginBottom: '1rem' }}
+                                />
+                                <TextField
+                                    label="Description"
+                                    variant="outlined"
+                                    fullWidth
+                                    name="description"
+                                    value={newMaker.description}
+                                    onChange={handleInputChange}
+                                    style={{ marginBottom: '1rem' }}
+                                />
+                                <Button type="submit" variant="contained" color="primary" style={{ display: 'block', margin: '0 auto' }}>
+                                    Add Maker
+                                </Button>
+                            </form>
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );

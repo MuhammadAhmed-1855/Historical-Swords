@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginPopup from './LoginPopup';
 
-const pages = ['Swords', 'Pricing', 'Blog'];
+const pages = ['swords', 'makers', 'materials', 'eras', 'types'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -95,6 +95,7 @@ function NavBar() {
                   <Typography
                     textAlign="center"
                     style={{ textDecoration: 'none', color: 'black' }}
+                    href={`/${page}`}
                   >
                     {page}
                   </Typography>
@@ -127,6 +128,7 @@ function NavBar() {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ m: 2, color: 'black', display: 'flex' }}
+                href={`/${page}`}
               >
                 {page}
               </Button>
