@@ -52,7 +52,7 @@ const CustomizedTable = ({ rows, columns }) => {
               <StyledTableRow key={rowIndex}>
                 {columns.map((column) => (
                   <StyledTableCell key={column}>
-                    {row[column]}
+                    {row[column].length > 0 ? row[column] : 'N/A'}
                   </StyledTableCell>
                 ))}
               </StyledTableRow>
